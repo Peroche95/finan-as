@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "./components/header";
+import Footer from "./components/footer";
+import Home from "./pages/home";
+import Transactions from "./pages/transações";
+import Historico from "./pages/historico";
+import { HistoricoProvider } from "./pages/context/context"; 
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HistoricoProvider> 
+      <Router>
+      <Header />
+      <Routes>
+      <Route path="/" exaxt Component={Home}/>
+      <Route path="/transactions" Component={Transactions} />
+      <Route path="/historico" Component={Historico} /> 
+      </Routes>
+      <Footer />
+      </Router>
+    </HistoricoProvider>
   );
 }
-
-export default App;
